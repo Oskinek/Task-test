@@ -1,16 +1,16 @@
-.person-line {
+.user-line {
   display: list-item;
   flex-direction: row;
   margin: 10px;
 }
-.person-username {
+.user-username {
   color: gray;
   font-size: small;
   margin-left: 10px;
 }
-.person-name {
+.user-name {
   font-weight: bold;
 }
-.person-info {
+.user-info {
   display: flex;
 }

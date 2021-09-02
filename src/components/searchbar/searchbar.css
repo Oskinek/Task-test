@@ -1,0 +1,8 @@
+input {
+  border-radius: 0px;
+  border: 2px solid black;
+  width: 330px;
+}
+input:focus-visible {
+  outline: none;
+}

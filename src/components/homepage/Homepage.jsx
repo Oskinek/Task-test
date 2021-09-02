@@ -1,12 +1,12 @@
 import React from 'react'
-import List from './List.jsx'
-import '../styles/homepage_styles.css'
+import UserList from '../userlist/UserList.jsx'
+import './homepage_styles.css'
 
 function HomePage () {
   return (
     <div>
       <div className="homepage">
-        <List/>
+        <UserList/>
       </div>
     </div>
   )
