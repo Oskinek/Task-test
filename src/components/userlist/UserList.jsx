@@ -1,42 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import UserContainer from '../user_container/UserContainer.jsx'
-import SearchBar from '../searchbar/SearchBar.jsx'
-import './userlist_styles.css'
+import './userlist.css'
 
-const UserList = () => {
-  const [users, setUsers]=useState([]);
-  const [searchField, setSearchField]=useState('');
-
-  useEffect(() => {
-    const url='https://jsonplaceholder.typicode.com/users'
-    
-    const renderUsers = async () => {
-      await fetch(url)
-      .then((response) => {
-        if (response.ok){
-          return response.json()
-        }
-        throw new Error('Response was not ok')
-      })
-      .then((response) => setUsers(response))
-    }
-    renderUsers();
-
-  }, []);
-    const filteredUsers = users.filter(user =>(
-      user.username.toLowerCase().includes(searchField.toLowerCase())
-    ))
-    const allUsers = filteredUsers.map((user, index) => (
-      <UserContainer user={user} key={index} />
-    ))
-    const handleChange = (e) => {
-      setSearchField(e.target.value)
-    }
+const UserList = (props) => {
+  if(props.loading){
+    return(
+      <div className='title'>Loading...</div>
+    )
+  }
+  if(!props.users.length) {
+    return <div className='title'>No matching users</div>
+  } 
     return (
-      <div className='list'>
-        <div className='title'>Users list</div>
-        <SearchBar placeholder='Search by username...' handleChange={(e)=> (handleChange(e))}/>
-        {allUsers}
+      <div data-testid='list'>
+        {props.users.map((user) => (
+          <UserContainer user={user} key={user.id} />
+        ))}
       </div>
     )
 }
